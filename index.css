@@ -1,0 +1,18 @@
+h2 {
+  font: 14px inconsolata Verdana;
+}
+
+h4 {
+  font: 12px inconsolata Verdana;
+}
+
+body {
+  font: normal 10px Verdana, Arial, sans-serif;
+}
+
+th {
+  text-align: center;
+}
+td {
+  text-align: center;
+}

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>
+      Cross-speaker Emotion Intensity Control Using Speaker-agnostic Emotion
+      Vector
+    </title>
+  </head>
+  <body>
+    <!-- Title -->
+    <div class="container" style="max-width: 1200px">
+      <div class="row mt-5 mb-3">
+        <div class="col text-center">
+          <p class="h2 font-weight-normal">
+            Cross-speaker Emotion Intensity Control Using Speaker-agnostic
+            Emotion Vector<br />
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="max-width: 1100px">
+      <div class="col" style="padding-left: 35px; padding-right: 35px">
+        <div class="row text-center">
+          <div class="col">
+            <p class="h2 font-weight-bold">Audio Samples</p>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 60px; margin-bottom: 20px">
+          <p class="h3 font-weight-normal">
+            Speech quality and Speaker consistency
+          </p>
+          <br />
+        </div>
+        <div class="col" style="padding-left: 35px; padding-right: 35px">
+          <div style="flex: 1">
+            <div class="row" style="margin-top: 60px; margin-bottom: 20px">
+              <p class="h4 font-weight-normal">Same-speaker from ESD dataset</p>
+              <br />
+            </div>
+            <table border="1">
+              <tr>
+                <th>emotion style</th>
+                <th>GT (reference)</th>
+                <th>baseline</th>
+                <th>proposed (spk ID)</th>
+                <th>proposed (x-vector)</th>
+              </tr>
+              <tr>
+                <td>Neutral</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/gt/Neutral.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/baseline/Neutral.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/spkid/Neutral.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/x-vector/Neutral.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Angry</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/gt/Angry.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/baseline/Angry.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/spkid/Angry.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/x-vector/Angry.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Sad</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/gt/Sad.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/baseline/Sad.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/spkid/Sad.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/x-vector/Sad.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Happy</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/gt/Happy.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/baseline/Happy.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/spkid/Happy.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Same-spk/x-vector/Happy.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div style="flex: 1">
+            <div class="row" style="margin-top: 60px; margin-bottom: 20px">
+              <p class="h4 font-weight-normal">
+                Cross-speaker from VCTK dataset
+              </p>
+              <br />
+            </div>
+            <table border="1">
+              <tr>
+                <th>emotion style</th>
+                <th>seen speaker</th>
+                <th>unseen speaker (zero-shot)</th>
+              </tr>
+              <tr>
+                <td>Neutral</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/seen/Neutral.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/unseen/Neutral.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Angry</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/seen/Angry.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/unseen/Angry.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Sad</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/seen/Sad.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/unseen/Sad.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Happy</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/seen/Happy.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Comparative/Cross-spk/unseen/Happy.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 60px; margin-bottom: 20px">
+          <p class="h3 font-weight-normal">
+            Cross-speaker Emotion Intensity Controllability
+          </p>
+          <br />
+        </div>
+        <div class="col" style="padding-left: 35px; padding-right: 35px">
+          <div style="flex: 1">
+            <div class="row" style="margin-top: 60px; margin-bottom: 20px">
+              <p class="h4 font-weight-normal">
+                Cross-speaker (seen) from VCTK dataset
+              </p>
+              <br />
+            </div>
+            <table border="1" cellpadding="5" cellspacing="0">
+              <tr>
+                <th>emotion style</th>
+                <th>alpha = 0.1 (weak)</th>
+                <th>alpha = 0.5 (medium)</th>
+                <th>alpha = 0.9 (strong)</th>
+              </tr>
+              <tr>
+                <td>Angry</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Angry/1.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Angry/2.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Angry/3.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Sad</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Sad/1.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Sad/2.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Sad/3.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Happy</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Happy/1.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Happy/2.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/seen/Happy/3.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div style="flex: 1">
+            <div class="row" style="margin-top: 60px; margin-bottom: 20px">
+              <p class="h4 font-weight-normal">
+                Cross-speaker (unseen) from VCTK dataset
+              </p>
+              <br />
+            </div>
+            <table border="1" cellpadding="5" cellspacing="0">
+              <tr>
+                <th>emotion style</th>
+                <th>alpha = 0.1 (weak)</th>
+                <th>alpha = 0.5 (medium)</th>
+                <th>alpha = 0.9 (strong)</th>
+              </tr>
+              <tr>
+                <td>Angry</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Angry/1.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Angry/2.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Angry/3.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Sad</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Sad/1.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Sad/2.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Sad/3.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td>Happy</td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Happy/1.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Happy/2.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+                <td>
+                  <audio
+                    controls
+                    controlsList="nodownload"
+                    style="
+                      display: inline-block;
+                      align-self: center;
+                      padding-top: 8px;
+                      padding-bottom: 8px;
+                      width: 200px;
+                    "
+                  >
+                    <source
+                      src="./samples/Controllability/unseen/Happy/3.wav"
+                      class="img-fluid rounded mx-auto d-block"
+                      alt="temp"
+                    />
+                  </audio>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+```
